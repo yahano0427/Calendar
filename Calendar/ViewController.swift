@@ -14,6 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //コメント追加
+        //亮太がコメントを追加したがっている
     }
 
 
