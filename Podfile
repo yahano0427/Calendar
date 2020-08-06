@@ -9,9 +9,13 @@ target 'Calendar' do
   pod 'FSCalendar'
   pod 'CalculateCalendarLogic'
 
-  # Firebaseにあったものをコピペ
+  # Firebase関連
   # add the Firebase pod for Google Analytics
   pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+  
   # add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
 
