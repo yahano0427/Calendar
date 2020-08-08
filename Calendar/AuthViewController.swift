@@ -19,8 +19,8 @@ class AuthViewController: UIViewController, FUIAuthDelegate {
     var handle: AuthStateDidChangeListenerHandle!
     
     let providers: [FUIAuthProvider] = [
-        //FUIFacebookAuth()
-        //FUITWitterAuth()
+        //FUIFacebookAuth(),
+        //FUITWitterAuth(),
         FUIEmailAuth()
     ]
     
@@ -30,10 +30,19 @@ class AuthViewController: UIViewController, FUIAuthDelegate {
         self.authUI.delegate = self
         self.authUI.providers = providers
     }
+    
+    //ボタンをタップするとFirebaseUIを使ってサインイン
+    @IBAction func buttonTapped(_ sender: Any) {
+        //FirebaseUIのViewの取得
+        let authViewController = self.authUI.authViewController()
+        //FirebaseUIのViewの表示
+        self.present(authViewController, animated: true, completion: nil)
+    }
 
     public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+        //認証に成功するとnilが返るため、ここで次のページ遷移処理
         if error == nil {
-            self.performSegue(withIdentifier: "toTopView", sender: self)
+            self.performSegue(withIdentifier: "topPage", sender: self)
         }
     }
 /*
