@@ -12,11 +12,12 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     //Firebase接続設定
-    var window: UIWindow?
+    //var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //Firebase接続設定
+        //クラウド上のデータベースのリンク:https://console.firebase.google.com/project/calendar-project-9bf20/database/firestore/data~2Fusers~2FuyQSGR7Yfq1EeHuqs7t9
         FirebaseApp.configure()
         
         return true
@@ -34,7 +35,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
-
