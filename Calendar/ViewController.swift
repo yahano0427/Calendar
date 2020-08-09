@@ -20,7 +20,18 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         // デリゲートの設定(デリゲートとは->参考:https://qiita.com/st43/items/9f9990d76cefa1909ef4)
         self.calendar.dataSource = self
         self.calendar.delegate = self
-
+        
+//        年月を日本語表示
+         self.calendar.appearance.headerDateFormat = "YYYY年MM月"
+        
+        //    曜日を日本語で表示
+        self.calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
+        self.calendar.calendarWeekdayView.weekdayLabels[1].text = "月"
+        self.calendar.calendarWeekdayView.weekdayLabels[2].text = "火"
+        self.calendar.calendarWeekdayView.weekdayLabels[3].text = "水"
+        self.calendar.calendarWeekdayView.weekdayLabels[4].text = "木"
+        self.calendar.calendarWeekdayView.weekdayLabels[5].text = "金"
+        self.calendar.calendarWeekdayView.weekdayLabels[6].text = "土"
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +42,7 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "YYYY-MM-DD"
         return formatter
     }()
 
@@ -67,6 +78,9 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
 
     // 土日や祝日の日の文字色を変える
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        
+        
+            
         //祝日判定をする（祝日は赤色で表示する）
         if self.judgeHoliday(date){
             return UIColor.red
