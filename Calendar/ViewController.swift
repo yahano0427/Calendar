@@ -10,7 +10,13 @@ import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 
+// ディスプレイサイズ取得
+let w = UIScreen.main.bounds.size.width
+let h = UIScreen.main.bounds.size.height
+
+
 class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
+    
     
     @IBOutlet weak var calendar: FSCalendar!
     
@@ -18,10 +24,21 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     override func viewDidLoad() {
         super.viewDidLoad()
         // デリゲートの設定(デリゲートとは->参考:https://qiita.com/st43/items/9f9990d76cefa1909ef4)
+        
+        //スケジュール内容
+        let labelDate = UILabel(frame: CGRect(x: 5, y: 580, width: 400, height: 50))
+        //「主なスケジュール」の表示
+        let labelTitle = UILabel(frame: CGRect(x: 0, y: 530, width: 180, height: 50))
+        //カレンダー部分
+        let dateView = FSCalendar(frame: CGRect(x: 0, y: 30, width: w, height: 400))
+        //日付の表示
+        let Date = UILabel(frame: CGRect(x: 5, y: 430, width: 200, height: 100))
+      
+        
         self.calendar.dataSource = self
         self.calendar.delegate = self
         
-//        年月を日本語表示
+        //        年月を日本語表示
          self.calendar.appearance.headerDateFormat = "YYYY年MM月"
         
         //    曜日を日本語で表示
@@ -34,13 +51,13 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         self.calendar.calendarWeekdayView.weekdayLabels[6].text = "土"
     }
 
-    override func didReceiveMemoryWarning() {
+        override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
-    fileprivate lazy var dateFormatter: DateFormatter = {
+        fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
+        fileprivate var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-DD"
         return formatter
@@ -97,5 +114,5 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
 
         return nil
     }
-
+    
 }
