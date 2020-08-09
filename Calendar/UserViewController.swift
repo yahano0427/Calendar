@@ -8,36 +8,54 @@
 import UIKit
 import FirebaseFirestore
 
-class UserViewController: UIViewController {
+class UserViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    @IBAction func changeProfile(_ sender: Any) {
+        print(nameTextField.text!)
+        var ref: DocumentReference? = nil
+        ref = Firestore.firestore().collection("users").addDocument(data: [
+            "name": nameTextField.text!,
+            
+        ]) { err in
+            if let err = err {
+                print("エラーが発生しました \(err)")
+            } else {
+                print("ドキュメントに追加しました ID:\(ref!.documentID)")
+            }
+        }
+    
+        //1.UIAlertControllerクラスのインスタンスを作成
+        //タイトル、メッセージ、アラートの表示スタイルを指定
+        let alert: UIAlertController = UIAlertController(title: "保存が完了しました", message:  "ここにはメッセージの内容が表示されます", preferredStyle: .alert)
+        
+        //2.actionの設定
+        //action初期化時にタイトル、スタイル、押された時に実行するハンドラを指定する
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: {
+            (action:UIAlertAction!) -> Void in
+            print("おk")
+        })
+        
+        //3.UIAlertControllerにActionを追加
+        alert.addAction(defaultAction)
+        
+        //4.Alertを表示
+        present(alert, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        label.text = "ボタンを押すとFirestoreにデータが保存されるよ"
+        nameTextField.delegate = self
     }
     
-    private func addAdaLovelace() {
-        var ref: DocumentReference? = nil
-        ref = Firestore.firestore().collection("users").addDocument(data: [
-            "first": "Ada",
-            "last": "Lovelace",
-            "born": 1815
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
-    @IBAction func tapButton(_ sender: Any) {
-        addAdaLovelace()
-        label.text = "データが保存されたよ"
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
 }
 /*

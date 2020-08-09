@@ -19,7 +19,6 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     
     
     @IBOutlet weak var calendar: FSCalendar!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +36,7 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         
         self.calendar.dataSource = self
         self.calendar.delegate = self
+        self.calendar.placeholderType = .none
         
         //        年月を日本語表示
          self.calendar.appearance.headerDateFormat = "YYYY年MM月"
@@ -68,7 +68,7 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         //祝日判定用のカレンダークラスのインスタンス
         let tmpCalendar = Calendar(identifier: .gregorian)
 
-        // 祝日判定を行う日にちの年、月、日を取得
+        // 祝日判定を行う日にちの年z、月、日を取得
         let year = tmpCalendar.component(.year, from: date)
         let month = tmpCalendar.component(.month, from: date)
         let day = tmpCalendar.component(.day, from: date)
@@ -95,9 +95,6 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
 
     // 土日や祝日の日の文字色を変える
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        
-        
-            
         //祝日判定をする（祝日は赤色で表示する）
         if self.judgeHoliday(date){
             return UIColor.red
