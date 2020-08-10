@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 //ディスプレイサイズ取得
 let w2 = UIScreen.main.bounds.size.width
@@ -50,11 +51,11 @@ class EventViewController: UIViewController {
         view.addSubview(eventInsert)
 
         //「戻る!」ボタン
-        let backBtn = UIButton(frame: CGRect(x: (w - 200) / 2, y: h - 50, width: 200, height: 30))
+        let backBtn = UIButton(frame: CGRect(x: (w2 - 200) / 2, y: 700, width: 200, height: 30))
         backBtn.setTitle("戻る", for: UIControl.State())
         backBtn.setTitleColor(.orange, for: UIControl.State())
-        backBtn.backgroundColor = .white
-        backBtn.layer.cornerRadius = 10.0
+         backBtn.backgroundColor = .white
+               backBtn.layer.cornerRadius = 10.0
         backBtn.layer.borderColor = UIColor.orange.cgColor
         backBtn.layer.borderWidth = 1.0
         backBtn.addTarget(self, action: #selector(onbackClick(_:)), for: .touchUpInside)
@@ -78,6 +79,8 @@ class EventViewController: UIViewController {
     
     @objc func saveEvent(_ : UIButton){
     print("データ書き込み開始")
+        
+        
     
 
         //前のページに戻る

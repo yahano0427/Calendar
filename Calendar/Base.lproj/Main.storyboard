@@ -29,6 +29,14 @@
                                     <outlet property="delegate" destination="8bC-Xf-vdC" id="mEG-O5-wPa"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFY-2z-7U0">
+                                <rect key="frame" x="320" y="832" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="PWD-6Y-HqR" kind="show" id="HWk-BJ-Ghz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -39,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
+            <point key="canvasLocation" x="126" y="125"/>
         </scene>
         <!--User View Controller-->
         <scene sceneID="3Br-Ca-kdk">
@@ -123,6 +131,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cOb-mc-F3b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1930" y="125"/>
+        </scene>
+        <!--Event View Controller-->
+        <scene sceneID="TGf-nh-vGD">
+            <objects>
+                <viewController id="PWD-6Y-HqR" customClass="EventViewController" customModule="Calendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JSd-yJ-fuk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Vej-Uw-Cdj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nfe-6Y-kSr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ue-J4-Kyi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="125" y="846"/>
         </scene>
     </scenes>
 </document>
