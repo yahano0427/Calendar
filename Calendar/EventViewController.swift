@@ -3,7 +3,7 @@
 //  Calendar
 //
 //  Created by 矢羽野裕介 on 2020/08/10.
-//  Copyright © 2020 矢羽野. All rights reserved.
+//  Copyright © 2020 矢羽野. All rights reserved
 //
 
 import UIKit

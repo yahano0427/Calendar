@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jrB-rF-DA8">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -33,9 +33,6 @@
                                 <rect key="frame" x="320" y="832" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="PWD-6Y-HqR" kind="show" id="HWk-BJ-Ghz"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -72,7 +69,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yd-Vs-8og">
-                                <rect key="frame" x="103" y="614" width="228" height="45"/>
+                                <rect key="frame" x="103" y="536" width="228" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ログアウト"/>
                                 <connections>
@@ -86,7 +83,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ui-O3-Pb7">
-                                <rect key="frame" x="59" y="525" width="296" height="48"/>
+                                <rect key="frame" x="59" y="246" width="296" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="変更を保存"/>
                                 <connections>
@@ -100,18 +97,19 @@
                     <navigationItem key="navigationItem" id="M1d-Og-IPH"/>
                     <connections>
                         <outlet property="nameTextField" destination="TSb-5B-vTk" id="PNF-oa-Jyc"/>
+                        <segue destination="99b-tW-koP" kind="show" identifier="logoutSegue" id="x3x-zm-5QI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XPd-GS-3Ih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="927.536231884058" y="124.55357142857142"/>
+            <point key="canvasLocation" x="940.57971014492762" y="262.5"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="QPr-xd-A57">
             <objects>
                 <viewController id="99b-tW-koP" customClass="AuthViewController" customModule="Calendar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hOt-C7-ca6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGb-bk-yOL">
@@ -122,39 +120,56 @@
                                     <action selector="buttonTapped:" destination="99b-tW-koP" eventType="touchUpInside" id="EpM-RU-aPi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Db-jP-m9l">
-                                <rect key="frame" x="96" y="68" width="165" height="245"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gKB-iA-o3H"/>
                     </view>
+                    <navigationItem key="navigationItem" id="QxI-Ci-KCP"/>
                     <connections>
                         <outlet property="AuthButton" destination="QGb-bk-yOL" id="ukw-8g-yAY"/>
-                        <segue destination="J6v-zg-dvd" kind="show" identifier="topPage" id="zqb-O9-Akp"/>
+                        <segue destination="J6v-zg-dvd" kind="show" identifier="loginSegue" id="zqb-O9-Akp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cOb-mc-F3b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1928.985507246377" y="124.55357142857142"/>
         </scene>
-        <!--Event View Controller-->
-        <scene sceneID="TGf-nh-vGD">
+        <!--Search View Controller-->
+        <scene sceneID="Z3Z-ka-RPI">
             <objects>
-                <viewController id="PWD-6Y-HqR" customClass="EventViewController" customModule="Calendar" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JSd-yJ-fuk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                <viewController id="jrB-rF-DA8" customClass="SearchViewController" customModule="Calendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mNH-Wj-rOq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ls3-Dv-rgX">
+                                <rect key="frame" x="74" y="168" width="242" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAD-4q-arg">
+                                <rect key="frame" x="111" y="237" width="168" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="検索"/>
+                                <connections>
+                                    <action selector="search:" destination="jrB-rF-DA8" eventType="touchUpInside" id="GSU-24-3dg"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="Vej-Uw-Cdj"/>
+                        <viewLayoutGuide key="safeArea" id="1Is-Xn-3p5"/>
                     </view>
-                    <navigationItem key="navigationItem" id="nfe-6Y-kSr"/>
+                    <connections>
+                        <outlet property="searchTextField" destination="ls3-Dv-rgX" id="CkD-Ko-uOA"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ue-J4-Kyi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9kc-m2-tCP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125" y="846"/>
+            <point key="canvasLocation" x="2834.7826086956525" y="136.60714285714286"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="x3x-zm-5QI"/>
+    </inferredMetricsTieBreakers>
 </document>
