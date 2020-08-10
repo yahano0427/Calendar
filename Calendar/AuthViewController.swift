@@ -16,7 +16,7 @@ class AuthViewController: UIViewController, FUIAuthDelegate {
     
     @IBOutlet weak var AuthButton: UIButton!
     var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()! }}
-    var handle: AuthStateDidChangeListenerHandle!
+    //var handle: AuthStateDidChangeListenerHandle!
     
     let providers: [FUIAuthProvider] = [
         //FUIFacebookAuth(),

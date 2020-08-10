@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseFirestore
+import FirebaseUI
 
 class UserViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
+    var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()! }}
     
     @IBAction func changeProfile(_ sender: Any) {
         print(nameTextField.text!)
@@ -25,7 +28,18 @@ class UserViewController: UIViewController, UITextFieldDelegate {
                 print("ドキュメントに追加しました ID:\(ref!.documentID)")
             }
         }
-    
+        
+        //Firebase Authのユーザー情報を更新
+        //なぜか変更が反映されないから一旦放置
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        changeRequest?.displayName = nameTextField.text!
+        changeRequest?.commitChanges()
+        
+        //ここの段階では名前が変更されていない
+        Auth.auth().addStateDidChangeListener{ (auth, user) in
+            print("変更後のユーザー名: \(user?.displayName)")
+        }
+
         //1.UIAlertControllerクラスのインスタンスを作成
         //タイトル、メッセージ、アラートの表示スタイルを指定
         let alert: UIAlertController = UIAlertController(title: "保存が完了しました", message:  "ここにはメッセージの内容が表示されます", preferredStyle: .alert)
@@ -44,6 +58,20 @@ class UserViewController: UIViewController, UITextFieldDelegate {
         present(alert, animated: true, completion: nil)
     }
     
+    //ログアウトボタンを押す時の動作
+    @IBAction func logout(_ sender: Any) {
+        do {
+            //そのまま記述すると'Call can throw, but it is not marked with 'try' and the error is not handled'と怒られるのでエラーハンドリング
+            try authUI.signOut()
+        } catch {
+            print(error)
+        }
+
+        Auth.auth().addStateDidChangeListener{(auth, user) in
+            print("現在ログインしているユーザーのメールアドレス:\(user?.email)")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -52,10 +80,21 @@ class UserViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        
+        //ここでユーザー情報を取得
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                let email = user.email
+                let name = user.displayName
+                print("ユーザー名:\(name) めあど:\(email)")
+                //user.emailでメールアドレス、user.uidでidを取得
+                //user.multiFactor.enroll(with: "testMultiFactorAssertion", displayName: "testDisplayName")
+                //var multiFactorString = "MultiFactor: "
+                //for info in user.multiFactor.enrolledFactors {
+                    //multiFactorString += info.displayName ?? "[DisplayName]"
+                    //multiFactorString += " "
+            }
+        }
     }
 }
 /*
