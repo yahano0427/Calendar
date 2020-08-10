@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10C5169E2E7717B34B62E669 /* Pods_Calendar_CalendarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB69253A99D77FA8896C6913 /* Pods_Calendar_CalendarUITests.framework */; };
+		2D1BFE5924E0E1130014014D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BFE5824E0E1130014014D /* EventViewController.swift */; };
 		2D49A57224DAF26200BCA894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49A57124DAF26200BCA894 /* AppDelegate.swift */; };
 		2D49A57424DAF26200BCA894 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49A57324DAF26200BCA894 /* SceneDelegate.swift */; };
 		2D49A57624DAF26200BCA894 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49A57524DAF26200BCA894 /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		18585D0365E4CCFC8B09FDA1 /* Pods-CalendarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalendarTests.debug.xcconfig"; path = "Target Support Files/Pods-CalendarTests/Pods-CalendarTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D1BFE5824E0E1130014014D /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		2D49A56E24DAF26200BCA894 /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D49A57124DAF26200BCA894 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D49A57324DAF26200BCA894 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				2D49A57C24DAF26600BCA894 /* LaunchScreen.storyboard */,
 				9F1B02B424DBC6DA0084A2B2 /* GoogleService-Info.plist */,
 				2D49A57A24DAF26600BCA894 /* Assets.xcassets */,
+				2D1BFE5824E0E1130014014D /* EventViewController.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				9F1B02C724DE5E650084A2B2 /* AuthViewController.swift in Sources */,
 				2D49A57224DAF26200BCA894 /* AppDelegate.swift in Sources */,
 				2D49A57424DAF26200BCA894 /* SceneDelegate.swift in Sources */,
+				2D1BFE5924E0E1130014014D /* EventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
