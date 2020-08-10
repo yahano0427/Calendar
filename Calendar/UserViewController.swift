@@ -13,6 +13,7 @@ import FirebaseUI
 class UserViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
+    
     var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()! }}
     
     @IBAction func changeProfile(_ sender: Any) {
@@ -67,9 +68,13 @@ class UserViewController: UIViewController, UITextFieldDelegate {
             print(error)
         }
 
+        //上のauthUI.signOut()でログアウトが完了しているためnilが返る
         Auth.auth().addStateDidChangeListener{(auth, user) in
             print("現在ログインしているユーザーのメールアドレス:\(user?.email)")
         }
+        
+        //ログアウトによる画面遷移
+        self.performSegue(withIdentifier: "logoutSegue", sender: self)
     }
     
     override func viewDidLoad() {
@@ -86,7 +91,7 @@ class UserViewController: UIViewController, UITextFieldDelegate {
             if let user = user {
                 let email = user.email
                 let name = user.displayName
-                print("ユーザー名:\(name) めあど:\(email)")
+                print("ログイン完了しました。displayName:\(name) email:\(email)")
                 //user.emailでメールアドレス、user.uidでidを取得
                 //user.multiFactor.enroll(with: "testMultiFactorAssertion", displayName: "testDisplayName")
                 //var multiFactorString = "MultiFactor: "
