@@ -126,10 +126,8 @@
             filePath = "Calendar/UserViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -144,8 +142,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "14"
             endingLineNumber = "14"
-            landmarkName = "UserViewController"
-            landmarkType = "3">
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "B2390D5F-F58F-493A-B272-052576F0EEFE - 5a8b8a80586fd072"
@@ -250,10 +248,8 @@
             filePath = "Calendar/UserViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "changeProfile(_:)"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -266,10 +262,8 @@
             filePath = "Calendar/UserViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -282,10 +276,8 @@
             filePath = "Calendar/UserViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -298,10 +290,8 @@
             filePath = "Calendar/UserViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -314,10 +304,8 @@
             filePath = "Calendar/UserViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -330,10 +318,8 @@
             filePath = "Calendar/UserViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "changeProfile(_:)"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -346,10 +332,8 @@
             filePath = "Calendar/UserViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -362,10 +346,8 @@
             filePath = "Calendar/UserViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -468,7 +450,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8BF5EC2B-5F10-4EA9-8F26-710D86F51EF9"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calendar/SearchViewController.swift"
@@ -476,6 +458,22 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
+            landmarkName = "search(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A5563A6-E8BF-4C5B-A733-6D6E10F8CEFE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calendar/SearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "search(_:)"
             landmarkType = "7">
          </BreakpointContent>
