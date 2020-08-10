@@ -78,7 +78,6 @@ class EventViewController: UIViewController {
     
     @objc func saveEvent(_ : UIButton){
     print("データ書き込み開始")
-    
 
         //前のページに戻る
         dismiss(animated: true, completion: nil)
