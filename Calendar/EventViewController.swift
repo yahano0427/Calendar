@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseFirestore
+import FirebaseUI
 
 //ディスプレイサイズ取得
 let w2 = UIScreen.main.bounds.size.width
@@ -19,6 +21,8 @@ let eventText = UITextView(frame: CGRect(x: (w2 - 300) / 2, y: 100, width: 300, 
 let y = UIDatePicker(frame: CGRect(x: 0, y: 300, width: w2, height: 300))
 //日付表示
 let y_text = UILabel(frame: CGRect(x: (w2 - 300) / 2, y: 570, width: 300, height: 20))
+
+
 class EventViewController: UIViewController {
     var date: String!
     override func viewDidLoad() {
@@ -77,11 +81,14 @@ class EventViewController: UIViewController {
         view.addSubview(y_text)
     }
     
+    //スケジュール変更
     @objc func saveEvent(_ : UIButton){
     print("データ書き込み開始")
-        
-        
-    
+        var ref: DocumentReference? = nil
+        print(saveEvent)
+        ref = Firestore.firestore().collection("users").addDocument(data: [
+            "name": "test"
+        ])
 
         //前のページに戻る
         dismiss(animated: true, completion: nil)
