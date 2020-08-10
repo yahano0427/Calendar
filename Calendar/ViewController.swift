@@ -20,12 +20,6 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     
     @IBOutlet weak var calendar: FSCalendar!
     
-    //画面遷移(スケジュール登録ページ)
-    @objc func onClick(_: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let SecondController = storyboard.instantiateViewController(withIdentifier: "Insert")
-        present(SecondController, animated: true, completion: nil)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,14 +56,37 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         labelDate.font = UIFont.systemFont(ofSize: 18.0)
         view.addSubview(labelDate)
         
-        //スケジュール追加ボタン
-        let addBtn = UIButton(frame: CGRect(x: w - 70, y: h - 70, width: 60, height: 60))
-        addBtn.setTitle("+", for: UIControl.State())
-        addBtn.setTitleColor(.white, for: UIControl.State())
-        addBtn.backgroundColor = .orange
-        addBtn.layer.cornerRadius = 30.0
-        addBtn.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
-        view.addSubview(addBtn)
+        //カレンダー処理(スケジュール表示処理)
+        func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
+
+            labelTitle.text = "主なスケジュール"
+            labelTitle.backgroundColor = .orange
+            view.addSubview(labelTitle)
+
+            //予定がある場合、スケジュールをDBから取得・表示する。
+            //無い場合、「スケジュールはありません」と表示。
+            labelDate.text = "スケジュールはありません"
+            labelDate.textColor = .lightGray
+            view.addSubview(labelDate)
+
+            let tmpDate = Calendar(identifier: .gregorian)
+            let year = tmpDate.component(.year, from: date)
+            let month = tmpDate.component(.month, from: date)
+            let day = tmpDate.component(.day, from: date)
+            let m = String(format: "%02d", month)
+            let d = String(format: "%02d", day)
+
+            let da = "\(year)/\(m)/\(d)"
+
+            //クリックしたら、日付が表示される。
+            Date.text = "\(m)/\(d)"
+            view.addSubview(Date)
+
+            
+            
+        }
+
+        
         
         //        年月を日本語表示
          self.calendar.appearance.headerDateFormat = "YYYY年MM月"
@@ -101,7 +118,7 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         //祝日判定用のカレンダークラスのインスタンス
         let tmpCalendar = Calendar(identifier: .gregorian)
 
-        // 祝日判定を行う日にちの年z、月、日を取得
+        // 祝日判定を行う日にちの年、月、日を取得
         let year = tmpCalendar.component(.year, from: date)
         let month = tmpCalendar.component(.month, from: date)
         let day = tmpCalendar.component(.day, from: date)
@@ -144,5 +161,6 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
 
         return nil
     }
+    
     
 }

@@ -3,10 +3,13 @@
 //  Calendar
 //
 //  Created by 矢羽野裕介 on 2020/08/10.
-//  Copyright © 2020 矢羽野. All rights reserved.
+//  Copyright © 2020 矢羽野. All rights reserved
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
+import FirebaseUI
 
 //ディスプレイサイズ取得
 let w2 = UIScreen.main.bounds.size.width
@@ -18,6 +21,8 @@ let eventText = UITextView(frame: CGRect(x: (w2 - 300) / 2, y: 100, width: 300, 
 let y = UIDatePicker(frame: CGRect(x: 0, y: 300, width: w2, height: 300))
 //日付表示
 let y_text = UILabel(frame: CGRect(x: (w2 - 300) / 2, y: 570, width: 300, height: 20))
+
+
 class EventViewController: UIViewController {
     var date: String!
     override func viewDidLoad() {
@@ -50,11 +55,11 @@ class EventViewController: UIViewController {
         view.addSubview(eventInsert)
 
         //「戻る!」ボタン
-        let backBtn = UIButton(frame: CGRect(x: (w - 200) / 2, y: h - 50, width: 200, height: 30))
+        let backBtn = UIButton(frame: CGRect(x: (w2 - 200) / 2, y: 700, width: 200, height: 30))
         backBtn.setTitle("戻る", for: UIControl.State())
         backBtn.setTitleColor(.orange, for: UIControl.State())
-        backBtn.backgroundColor = .white
-        backBtn.layer.cornerRadius = 10.0
+         backBtn.backgroundColor = .white
+               backBtn.layer.cornerRadius = 10.0
         backBtn.layer.borderColor = UIColor.orange.cgColor
         backBtn.layer.borderWidth = 1.0
         backBtn.addTarget(self, action: #selector(onbackClick(_:)), for: .touchUpInside)
@@ -76,8 +81,14 @@ class EventViewController: UIViewController {
         view.addSubview(y_text)
     }
     
+    //スケジュール変更
     @objc func saveEvent(_ : UIButton){
     print("データ書き込み開始")
+        var ref: DocumentReference? = nil
+        print(saveEvent)
+        ref = Firestore.firestore().collection("users").addDocument(data: [
+            "name": "test"
+        ])
 
         //前のページに戻る
         dismiss(animated: true, completion: nil)
