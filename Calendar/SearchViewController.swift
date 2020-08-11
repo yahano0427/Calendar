@@ -17,9 +17,6 @@ class SearchViewController: UIViewController {
     //入力フォーム
     @IBOutlet weak var searchTextField: UITextField!
     
-    //ログインユーザーのuid
-    let uid = Auth.auth().currentUser?.uid
-
     //検索
     @IBAction func search(_ sender: Any) {
         Firestore.firestore().collection("users").whereField("email", isEqualTo: searchTextField.text!).getDocuments() { (QuerySnapshot, err) in

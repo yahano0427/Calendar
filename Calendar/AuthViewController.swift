@@ -40,20 +40,24 @@ class AuthViewController: UIViewController, FUIAuthDelegate {
     }
 
     public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-        //新規ユーザーをFirestoreに保存
+        //同一emailを持つユーザーがFirestore内に既に存在しない場合、新規ユーザーと見なしてFirestoreに保存する
         var ref: DocumentReference? = nil
-               ref = Firestore.firestore().collection("users").addDocument(data: [
-                "uid": user?.uid,
-                "name": user?.displayName,
-                "email": user?.email
-               ]) { err in
-                   if let err = err {
-                       print("Firestoreへの新規ユーザー保存時にエラーが発生しました \(err)")
-                   } else {
-                       print("Firestoreに新規ユーザーを保存しました。ID:\(ref!.documentID)")
-                   }
-               }
-        
+        Firestore.firestore().collection("users").whereField("email", isEqualTo: user?.email).getDocuments() { (QuerySnapshot, err) in
+            if QuerySnapshot!.isEmpty {
+                ref = Firestore.firestore().collection("users").addDocument(data: [
+                 "uid": user?.uid,
+                 "name": user?.displayName,
+                 "email": user?.email
+                ]) { err in
+                    if let err = err {
+                        print("Firestoreへの新規ユーザー保存時にエラーが発生しました \(err)")
+                    } else {
+                        print("Firestoreに新規ユーザーを保存しました。ID:\(ref!.documentID)")
+                    }
+                }
+            }
+        }
+
         //認証に成功するとnilが返るため、ここで次のページ遷移処理
         if error == nil {
             self.performSegue(withIdentifier: "loginSegue", sender: self)

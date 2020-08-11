@@ -77,6 +77,12 @@ class SettingViewController: UIViewController, UITextFieldDelegate {
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
     }
     
+    //ユーザー検索画面に移動
+    @IBAction func searchView(_ sender: Any) {
+        self.performSegue(withIdentifier: "searchViewSegue", sender: self)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
