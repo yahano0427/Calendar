@@ -10,6 +10,10 @@ import UIKit
 import Firebase
 
 class SearchViewController: UIViewController {
+    // var searchedName: Stringだとclass Controller has no initializersとエラーが出るので注意
+    //初期値をオプショナル型で定義する必要がある
+    var searchedName: String!
+    
     //入力フォーム
     @IBOutlet weak var searchTextField: UITextField!
     
@@ -18,16 +22,37 @@ class SearchViewController: UIViewController {
 
     //検索
     @IBAction func search(_ sender: Any) {
-        print(searchTextField.text!)
         Firestore.firestore().collection("users").whereField("email", isEqualTo: searchTextField.text!).getDocuments() { (QuerySnapshot, err) in
             if let err = err {
-                print("ユーザーが見つかりませんでした。:\(err)")
+                print("エラーが発生しました。:\(err)")
+                
+                //ユーザーが見つからなかった場合の画面に遷移
+                self.performSegue(withIdentifier: "nouser", sender: self)
             } else {
+                if QuerySnapshot!.isEmpty {
+                    print("ユーザーが見つかりませんでした")
+                    self.performSegue(withIdentifier: "nouser", sender: self)
+                }
                 for document in QuerySnapshot!.documents {
+                    //selfが必要
+                    //self.searchedName = document.data().nameだと型が違うと怒られるOption value型をstring型として保存
+                    self.searchedName = document.data()["name"] as! String
                     print("\(document.documentID) => \(document.data())")
+                    
+                    //検索結果のデータを渡してUserViewControllerに遷移
+                    //ユーザーが見つかった場合のみユーザー画面に遷移
+                    self.performSegue(withIdentifier: "user", sender: self)
                 }
             }
-            
+        }
+    }
+    
+    //prepareyはperformdSegueの前に実行される関数。遷移先にデータを渡したいときなどに使う
+    //今回はユーザー名をUserViewControllerに渡す
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "user" {
+           let nextVC = segue.destination as! UserViewController
+           nextVC.userName = self.searchedName
         }
     }
     

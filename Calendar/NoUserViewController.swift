@@ -1,34 +1,25 @@
 //
-//  UserViewController.swift
+//  NoUserViewController.swift
 //  Calendar
 //
-//  Created by 笹谷亮太 on 2020/08/10.
+//  Created by 笹谷亮太 on 2020/08/11.
 //  Copyright © 2020 矢羽野. All rights reserved.
 //
 
 import UIKit
 
-class UserViewController: UIViewController {
-    
-    //""と初期化すると型宣言をする必要がなくなる(自動でString型になる)
-    var userName = ""
-
-    @IBOutlet weak var userNameField: UILabel!
-    
+class NoUserViewController: UIViewController {
     @IBAction func returnSearchButton(_ sender: Any) {
         self.performSegue(withIdentifier: "returnSearchSegue", sender: self)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        userNameField.text = userName
     }
     
-    @IBAction func toScheduleSegue(_ sender: Any) {
-        self.performSegue(withIdentifier: "scheduleSegue", sender: self)
-    }
-    
+
     /*
     // MARK: - Navigation
 
