@@ -41,18 +41,16 @@ class AuthViewController: UIViewController, FUIAuthDelegate {
 
     public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         //同一emailを持つユーザーがFirestore内に既に存在しない場合、新規ユーザーと見なしてFirestoreに保存する
-        var ref: DocumentReference? = nil
         Firestore.firestore().collection("users").whereField("email", isEqualTo: user?.email).getDocuments() { (QuerySnapshot, err) in
             if QuerySnapshot!.isEmpty {
-                ref = Firestore.firestore().collection("users").addDocument(data: [
-                 "uid": user?.uid,
+                Firestore.firestore().collection("users").document(user?.uid as! String).setData([
                  "name": user?.displayName,
                  "email": user?.email
                 ]) { err in
                     if let err = err {
                         print("Firestoreへの新規ユーザー保存時にエラーが発生しました \(err)")
                     } else {
-                        print("Firestoreに新規ユーザーを保存しました。ID:\(ref!.documentID)")
+                        print("Firestoreに新規ユーザーを保存しました。ID:\(user?.uid)")
                     }
                 }
             }

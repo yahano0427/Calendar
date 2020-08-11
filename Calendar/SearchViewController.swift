@@ -32,6 +32,7 @@ class SearchViewController: UIViewController {
                 for document in QuerySnapshot!.documents {
                     //検索したユーザーデータをsearchedUserに入れる
                     self.searchedUser = document.data()
+                    self.searchedUser.updateValue(document.documentID, forKey: "uid")
                     
                     print("\(document.documentID) => \(document.data())")
                     

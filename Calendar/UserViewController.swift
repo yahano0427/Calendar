@@ -34,12 +34,22 @@ class UserViewController: UIViewController {
     @IBAction func follow(_ sender: Any) {
         if following {
             //既にフォローしている場合、followコレクションからuidを削除して、ボタンをフォローするに変更する
-            Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow")
-            followButton.setTitle("フォローする", for: .highlighted)
+            Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").document(searchedUser["uid"] as! String).delete() {
+                err in
+                if let err = err {
+                    print("フォロー解除中にエラーが発生しました:\(err)")
+                } else {
+                    print("フォローの解除に成功しました")
+                }
+            }
+            
+            following = false
+            followButton.setTitle("フォローする", for: .normal)
         } else {
             //フォローしていない場合followコレクションにuidを保存して、ボタンをフォロー中に変更する
-            Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").setValuesForKeys(["uid": searchedUser["uid"], "name": searchedUser["name"]])
-            followButton.setTitle("フォロー中", for: .highlighted)
+            Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").document(searchedUser["uid"] as! String).setData(["permitted": false, "name": searchedUser["name"], "email": searchedUser["email"]])
+            following = true
+            followButton.setTitle("フォロー中", for: .normal)
         }
     }
     
