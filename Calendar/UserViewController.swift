@@ -14,11 +14,15 @@ class UserViewController: UIViewController {
     
     //ログインしているユーザー
     let currentUser = Auth.auth().currentUser
+
+    //検索されたユーザー情報(dictionary型)
+    var searchedUser = [String: Any]()
     
-    //""と初期化すると型宣言をする必要がなくなる(自動でString型になる)
-    var userName = ""
+    //ログインユーザーが検索したユーザーをフォローしているかのフラグ
+    var following: Bool = false
 
     @IBOutlet weak var userNameField: UILabel!
+    @IBOutlet weak var followButton: UIButton!
     
     //検索に戻るボタン
     @IBAction func returnSearchButton(_ sender: Any) {
@@ -26,8 +30,17 @@ class UserViewController: UIViewController {
     }
     
     //フォローボタン
+    //ログインユーザーのfollowコレクションに検索しているユーザーのuidを保存
     @IBAction func follow(_ sender: Any) {
-        Firestore.firestore().collection("users").whereField(currentUser?.email).get
+        if following {
+            //既にフォローしている場合、followコレクションからuidを削除して、ボタンをフォローするに変更する
+            Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow")
+            followButton.setTitle("フォローする", for: .highlighted)
+        } else {
+            //フォローしていない場合followコレクションにuidを保存して、ボタンをフォロー中に変更する
+            Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").setValuesForKeys(["uid": searchedUser["uid"], "name": searchedUser["name"]])
+            followButton.setTitle("フォロー中", for: .highlighted)
+        }
     }
     
     //カレンダーを確認するボタン
@@ -39,7 +52,21 @@ class UserViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        userNameField.text = userName
+        //そのままだとAny型をString型に入れることになりエラーが出るため as! Stringが必要
+        //ユーザー名を代入
+        userNameField.text = searchedUser["name"] as! String
+        
+        //ログインユーザーが検索ユーザーをフォローしているかを確認
+        Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").whereField("uid", isEqualTo: searchedUser["uid"]).getDocuments() {
+            (QuerySnapshot, err) in
+            if QuerySnapshot!.isEmpty {
+                self.following = false
+                self.followButton.setTitle("フォローする", for: .normal)
+            } else {
+                self.following = true
+                self.followButton.setTitle("フォロー中", for: .normal)
+            }
+        }
     }
     
     /*

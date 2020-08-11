@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="99b-tW-koP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J6v-zg-dvd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -272,6 +272,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="aN4-pa-Irw"/>
                     <connections>
+                        <outlet property="followButton" destination="JNw-df-J7L" id="As5-gB-AyC"/>
                         <outlet property="userNameField" destination="DdW-q3-sZW" id="6Dv-Vo-2UN"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="scheduleSegue" id="DWU-6v-37t"/>
                         <segue destination="jrB-rF-DA8" kind="show" identifier="returnSearchSegue" id="uYu-Ei-hBL"/>

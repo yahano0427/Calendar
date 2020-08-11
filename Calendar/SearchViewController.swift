@@ -10,9 +10,8 @@ import UIKit
 import Firebase
 
 class SearchViewController: UIViewController {
-    // var searchedName: Stringだとclass Controller has no initializersとエラーが出るので注意
-    //初期値をオプショナル型で定義する必要がある
-    var searchedName: String!
+    //検索したユーザーデータ
+    var searchedUser = [String: Any]()
     
     //入力フォーム
     @IBOutlet weak var searchTextField: UITextField!
@@ -31,9 +30,9 @@ class SearchViewController: UIViewController {
                     self.performSegue(withIdentifier: "nouser", sender: self)
                 }
                 for document in QuerySnapshot!.documents {
-                    //selfが必要
-                    //self.searchedName = document.data().nameだと型が違うと怒られるOption value型をstring型として保存
-                    self.searchedName = document.data()["name"] as! String
+                    //検索したユーザーデータをsearchedUserに入れる
+                    self.searchedUser = document.data()
+                    
                     print("\(document.documentID) => \(document.data())")
                     
                     //検索結果のデータを渡してUserViewControllerに遷移
@@ -49,7 +48,7 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "user" {
            let nextVC = segue.destination as! UserViewController
-           nextVC.userName = self.searchedName
+           nextVC.searchedUser = self.searchedUser
         }
     }
     
