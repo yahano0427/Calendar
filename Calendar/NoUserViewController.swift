@@ -9,6 +9,7 @@
 import UIKit
 
 class NoUserViewController: UIViewController {
+    let label: UILabel = UILabel()
     @IBAction func returnSearchButton(_ sender: Any) {
         self.performSegue(withIdentifier: "returnSearchSegue", sender: self)
     }
@@ -17,6 +18,8 @@ class NoUserViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        label.text = "Hello World"
+        view.addSubview(label)
     }
     
 

@@ -19,7 +19,6 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     
     
     @IBOutlet weak var calendar: FSCalendar!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,6 +16,10 @@ class SettingViewController: UIViewController, UITextFieldDelegate {
     
     var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()! }}
     
+    @IBAction func followButton(_ sender: Any) {
+        
+    }
+    
     @IBAction func changeProfile(_ sender: Any) {
         print(nameTextField.text!)
         var ref: DocumentReference? = nil

@@ -29,11 +29,14 @@ class UserViewController: UIViewController {
         self.performSegue(withIdentifier: "returnSearchSegue", sender: self)
     }
     
+    @IBOutlet weak var ddd: UILabel!
     //フォローボタン
     //ログインユーザーのfollowコレクションに検索しているユーザーのuidを保存
     @IBAction func follow(_ sender: Any) {
         if following {
             //既にフォローしている場合、followコレクションからuidを削除して、ボタンをフォローするに変更する
+            
+            //followコレクションからデータ削除
             Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").document(searchedUser["uid"] as! String).delete() {
                 err in
                 if let err = err {
@@ -43,11 +46,28 @@ class UserViewController: UIViewController {
                 }
             }
             
+            //followerコレクションからデータ削除
+            Firestore.firestore().collection("users").document(searchedUser["uid"] as! String).collection("follower").document(currentUser!.uid).delete() {
+                err in
+                if let err = err {
+                    print("フォロワー解除中にエラーが発生しました:\(err)")
+                } else {
+                    print("フォロワー解除に成功しました")
+                }
+            }
+            
+            
             following = false
             followButton.setTitle("フォローする", for: .normal)
         } else {
             //フォローしていない場合followコレクションにuidを保存して、ボタンをフォロー中に変更する
+            
+            //followコレクションにデータ投入
             Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").document(searchedUser["uid"] as! String).setData(["permitted": false, "name": searchedUser["name"], "email": searchedUser["email"]])
+            
+            //followerコレクションにデータ投入
+            Firestore.firestore().collection("users").document(searchedUser["uid"] as! String).collection("follower").document(currentUser!.uid).setData(["permitted": false, "name": currentUser!.displayName, "email": currentUser!.email])
+            
             following = true
             followButton.setTitle("フォロー中", for: .normal)
         }
