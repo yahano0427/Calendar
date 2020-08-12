@@ -39,7 +39,7 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         self.calendar.placeholderType = .none
         
         //日付表示設定
-        Date.text = ""
+        Date.text = "あ"
         Date.font = UIFont.systemFont(ofSize: 60.0)
         Date.textColor = .black
         view.addSubview(Date)
@@ -80,11 +80,10 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
             //クリックしたら、日付が表示される。
             Date.text = "\(m)/\(d)"
             view.addSubview(Date)
-
             
             
+        
         }
-
         
         
         //        年月を日本語表示
