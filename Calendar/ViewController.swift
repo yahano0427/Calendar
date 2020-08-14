@@ -20,43 +20,43 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     
     @IBOutlet weak var calendar: FSCalendar!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var date: UILabel!
+    
+    
+   
         // デリゲートの設定(デリゲートとは->参考:https://qiita.com/st43/items/9f9990d76cefa1909ef4)
         
         //スケジュール内容
-        let labelDate = UILabel(frame: CGRect(x: 5, y: 580, width: 400, height: 50))
+        let labelDate = UILabel(frame: CGRect(x: 5, y: 740, width: 400, height: 50))
         //「主なスケジュール」の表示
-        let labelTitle = UILabel(frame: CGRect(x: 0, y: 530, width: 180, height: 50))
+        let labelTitle = UILabel(frame: CGRect(x: 0, y: 720, width: 180, height: 20))
         //カレンダー部分
         let dateView = FSCalendar(frame: CGRect(x: 0, y: 30, width: w, height: 400))
         //日付の表示
-        let Date = UILabel(frame: CGRect(x: 5, y: 430, width: 200, height: 100))
+        let Date = UILabel(frame: CGRect(x: 5, y: 650, width: 200, height: 100))
       
-        
-        self.calendar.dataSource = self
-        self.calendar.delegate = self
-        self.calendar.placeholderType = .none
-        
+        func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
+            
+            
         //日付表示設定
-        Date.text = "あ"
-        Date.font = UIFont.systemFont(ofSize: 60.0)
+        Date.text = ""
+        Date.font = UIFont.systemFont(ofSize: 20.0)
         Date.textColor = .black
         view.addSubview(Date)
 
         //「主なスケジュール」表示設定
         labelTitle.text = ""
         labelTitle.textAlignment = .center
-        labelTitle.font = UIFont.systemFont(ofSize: 20.0)
+        labelTitle.font = UIFont.systemFont(ofSize: 14.0)
         view.addSubview(labelTitle)
 
         //スケジュール内容表示設定
         labelDate.text = ""
-        labelDate.font = UIFont.systemFont(ofSize: 18.0)
+        labelDate.font = UIFont.systemFont(ofSize: 15.0)
         view.addSubview(labelDate)
         
         //カレンダー処理(スケジュール表示処理)
-        func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
+        
 
             labelTitle.text = "主なスケジュール"
             labelTitle.backgroundColor = .orange
@@ -84,7 +84,16 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
             
         
         }
+    
+    
+    override func viewDidLoad() {
+           super.viewDidLoad()
         
+        
+        
+        self.calendar.dataSource = self
+        self.calendar.delegate = self
+        self.calendar.placeholderType = .none
         
         //        年月を日本語表示
          self.calendar.appearance.headerDateFormat = "YYYY年MM月"
