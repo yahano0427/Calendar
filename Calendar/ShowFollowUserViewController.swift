@@ -13,7 +13,7 @@ class ShowFollowUserViewController: UIViewController, UITableViewDelegate, UITab
     //ログインユーザー
     let currentUser = Auth.auth().currentUser
     
-    //フォローユーザー
+    //フォローユーザーまたはフォロワーユーザー
     var searchedUsers = [Dictionary<String, Any>]()
     //var searchedUser = [String: Any]()
     

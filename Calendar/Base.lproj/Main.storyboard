@@ -103,6 +103,9 @@
                                 <rect key="frame" x="235" y="404" width="77" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="フォロワー"/>
+                                <connections>
+                                    <action selector="followerButton:" destination="J6v-zg-dvd" eventType="touchUpInside" id="ELM-7l-h8t"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkf-ul-dH1">
                                 <rect key="frame" x="72" y="320" width="304" height="75"/>
@@ -126,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XPd-GS-3Ih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072" y="321"/>
+            <point key="canvasLocation" x="1071.0144927536232" y="320.75892857142856"/>
         </scene>
         <!--Show Follow User View Controller-->
         <scene sceneID="pbv-rT-BW3">

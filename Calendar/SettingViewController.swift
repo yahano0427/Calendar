@@ -14,7 +14,7 @@ class SettingViewController: UIViewController, UITextFieldDelegate {
     //ログインユーザー
     let currentUser = Auth.auth().currentUser
     
-    //フォローユーザーデータを格納する
+    //フォローまたはフォロワーのユーザーデータを格納する
     var searchedUsers = [Dictionary<String, Any>]()
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -22,7 +22,7 @@ class SettingViewController: UIViewController, UITextFieldDelegate {
     var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()! }}
     
     @IBAction func followButton(_ sender: Any) {
-        //フォローしているユーザーデータを取得してShowFollowuserControllerに画面遷移する
+        //フォローしているユーザーデータを取得してShowFollow UserControllerに画面遷移する
         Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").getDocuments() {(QuerySnapshot, err) in
             if let err = err {
                 print("ログインユーザーのフォローデータ取得時にエラーが発生しました")
@@ -34,6 +34,28 @@ class SettingViewController: UIViewController, UITextFieldDelegate {
             }
             
             //フォロー一覧画面に遷移
+            //Firestoreの処理内に記述することがポイント、そうしないと非同期処理で先にperformSegueが呼ばれるために、データ渡すことができない
+            self.performSegue(withIdentifier: "showFollowSegue", sender: self)
+        }
+    }
+    
+    @IBAction func tap(_ sender: Any) {
+        self.performSegue(withIdentifier: "test", sender: self)
+    }
+    
+    @IBAction func followerButton(_ sender: Any) {
+        //フォロワーのユーザーデータを取得してShowFolloUserControllerに画面遷移
+        Firestore.firestore().collection("users").document(currentUser!.uid).collection("follower").getDocuments() {(QuerySnapshot, err) in
+            if let err = err {
+                print("ログインユーザーのフォロワーデータ取得時にエラーが発生しました")
+            } else {
+                for document in QuerySnapshot!.documents {
+                    self.searchedUsers.append(document.data())
+                    print("ログインユーザーのフォロワーデータ取得に成功しました:\(document.data())")
+                }
+            }
+            
+            //フォロワー一覧画面に遷移
             //Firestoreの処理内に記述することがポイント、そうしないと非同期処理で先にperformSegueが呼ばれるために、データ渡すことができない
             self.performSegue(withIdentifier: "showFollowSegue", sender: self)
         }
