@@ -34,6 +34,15 @@
                                     <outlet property="delegate" destination="8bC-Xf-vdC" id="mEG-O5-wPa"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DV-Nw-n2D" customClass="EventViewContoller">
+                                <rect key="frame" x="348" y="710" width="46" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="予定を追加"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="oim-BY-CEi" kind="presentation" id="NK7-qq-qft"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -47,6 +56,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3076.811594202899" y="14.732142857142856"/>
+        </scene>
+        <!--Event View Controller-->
+        <scene sceneID="IAr-La-fxb">
+            <objects>
+                <viewController id="oim-BY-CEi" customClass="EventViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h4B-yV-Og5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="DJq-th-40B"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cRK-nq-PNo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Y7-r6-mRh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="125" y="863"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="3Br-Ca-kdk">

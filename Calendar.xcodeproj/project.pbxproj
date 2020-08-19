@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D1BFE5924E0E1130014014D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BFE5824E0E1130014014D /* EventViewController.swift */; };
 		2D49A57224DAF26200BCA894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49A57124DAF26200BCA894 /* AppDelegate.swift */; };
 		2D49A57424DAF26200BCA894 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49A57324DAF26200BCA894 /* SceneDelegate.swift */; };
 		2D49A57624DAF26200BCA894 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49A57524DAF26200BCA894 /* ViewController.swift */; };
@@ -49,7 +48,6 @@
 
 /* Begin PBXFileReference section */
 		0539BBF37AA0855845FB9D8B /* Pods_CalendarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalendarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D1BFE5824E0E1130014014D /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		2D49A56E24DAF26200BCA894 /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D49A57124DAF26200BCA894 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D49A57324DAF26200BCA894 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 				2D49A57C24DAF26600BCA894 /* LaunchScreen.storyboard */,
 				9F1B02B424DBC6DA0084A2B2 /* GoogleService-Info.plist */,
 				2D49A57A24DAF26600BCA894 /* Assets.xcassets */,
-				2D1BFE5824E0E1130014014D /* EventViewController.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -479,7 +476,6 @@
 				9FECA14424E2603300F8FF82 /* NoUserViewController.swift in Sources */,
 				2D49A57224DAF26200BCA894 /* AppDelegate.swift in Sources */,
 				2D49A57424DAF26200BCA894 /* SceneDelegate.swift in Sources */,
-				2D1BFE5924E0E1130014014D /* EventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
