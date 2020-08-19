@@ -139,6 +139,7 @@ class SettingViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         nameTextField.delegate = self
+        title = "プロフィール画面的な"
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -89,6 +89,8 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     override func viewDidLoad() {
            super.viewDidLoad()
         
+        title = "Schedule"
+        
         
         
         self.calendar.dataSource = self

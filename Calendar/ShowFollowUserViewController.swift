@@ -21,6 +21,7 @@ class ShowFollowUserViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        title = "follow"
     }
     
     //セルの個数を指定するデリゲートメソッド
