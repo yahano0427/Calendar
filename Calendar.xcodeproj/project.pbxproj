@@ -23,6 +23,7 @@
 		9F1B02C724DE5E650084A2B2 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B02C624DE5E650084A2B2 /* AuthViewController.swift */; };
 		9F7AD94124EDFAF8009DD785 /* SlideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AD94024EDFAF8009DD785 /* SlideViewController.swift */; };
 		9F7AD94324EDFCD4009DD785 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AD94224EDFCD4009DD785 /* LeftViewController.swift */; };
+		9F7AD94724EE3D0B009DD785 /* FollowUserCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AD94624EE3D0B009DD785 /* FollowUserCalendarViewController.swift */; };
 		9FECA13E24E1075500F8FF82 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FECA13D24E1075500F8FF82 /* SearchViewController.swift */; };
 		9FECA14224E1437A00F8FF82 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FECA14124E1437A00F8FF82 /* UserViewController.swift */; };
 		9FECA14424E2603300F8FF82 /* NoUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FECA14324E2603200F8FF82 /* NoUserViewController.swift */; };
@@ -73,6 +74,7 @@
 		9F1B02C624DE5E650084A2B2 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		9F7AD94024EDFAF8009DD785 /* SlideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideViewController.swift; sourceTree = "<group>"; };
 		9F7AD94224EDFCD4009DD785 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		9F7AD94624EE3D0B009DD785 /* FollowUserCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUserCalendarViewController.swift; sourceTree = SOURCE_ROOT; };
 		9FECA13D24E1075500F8FF82 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9FECA14124E1437A00F8FF82 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		9FECA14324E2603200F8FF82 /* NoUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoUserViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		2D49A57024DAF26200BCA894 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				9F7AD94624EE3D0B009DD785 /* FollowUserCalendarViewController.swift */,
 				2D49A57124DAF26200BCA894 /* AppDelegate.swift */,
 				2D49A57324DAF26200BCA894 /* SceneDelegate.swift */,
 				2D49A57524DAF26200BCA894 /* ViewController.swift */,
@@ -481,6 +484,7 @@
 				9F7AD94324EDFCD4009DD785 /* LeftViewController.swift in Sources */,
 				9F1B02C724DE5E650084A2B2 /* AuthViewController.swift in Sources */,
 				9F7AD94124EDFAF8009DD785 /* SlideViewController.swift in Sources */,
+				9F7AD94724EE3D0B009DD785 /* FollowUserCalendarViewController.swift in Sources */,
 				9FECA14424E2603300F8FF82 /* NoUserViewController.swift in Sources */,
 				2D49A57224DAF26200BCA894 /* AppDelegate.swift in Sources */,
 				2D49A57424DAF26200BCA894 /* SceneDelegate.swift in Sources */,

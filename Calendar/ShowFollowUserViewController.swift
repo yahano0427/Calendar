@@ -13,15 +13,36 @@ class ShowFollowUserViewController: UIViewController, UITableViewDelegate, UITab
     //ログインユーザー
     let currentUser = Auth.auth().currentUser
     
-    //フォローユーザーまたはフォロワーユーザー
-    var searchedUsers = [Dictionary<String, Any>]()
-    //var searchedUser = [String: Any]()
+    @IBAction func openSlideView(_ sender: Any) {
+        self.slideMenuController()?.openLeft()
+    }
+    
+    //フォローユーザー
+    var searchedUsers = [Dictionary<String, Any>]() {
+        //Firestoreから非同期でレスポンスが返ってくるため、searchedUsersが変更されたときにここでreload
+        didSet{
+            followUserTable.reloadData()
+        }
+    }
+    
+    //テーブル
+    @IBOutlet weak var followUserTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        title = "follow"
+        Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").getDocuments() {(QuerySnapshot, err) in
+            if let err = err {
+                print("ログインユーザーのフォローデータ取得時にエラーが発生しました:\(err)")
+            } else {
+                for document in QuerySnapshot!.documents {
+                    self.searchedUsers.append(document.data())
+                    print("ログインユーザーのフォローデータ取得に成功しました:\(document.data())")
+                }
+            }
+        }
+        print(currentUser!.email)
     }
     
     //セルの個数を指定するデリゲートメソッド
@@ -44,7 +65,7 @@ class ShowFollowUserViewController: UIViewController, UITableViewDelegate, UITab
         selectedUser = self.searchedUsers[indexPath.row]
         
         //ボタンを押すとユーザー画面に遷移
-        self.performSegue(withIdentifier: "userDetailSegue" , sender: self)
+        self.performSegue(withIdentifier: "followUserScheduleSegue" , sender: self)
     }
     
     //UserViewControllerのsearchedUserに値をセット
