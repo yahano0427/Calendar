@@ -38,6 +38,7 @@ class ShowFollowUserViewController: UIViewController, UITableViewDelegate, UITab
     
     var selectedUser = [String: Any]()
     
+    //セルを押下した際に起きるイベント処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //prepareにユーザーデータを引き継ぐためにselectedUserに格納
         selectedUser = self.searchedUsers[indexPath.row]

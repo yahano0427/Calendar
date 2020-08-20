@@ -10,6 +10,11 @@ import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 
+//NotificationCenterを使うための設定(cf: https://qiita.com/ryo-ta/items/2b142361996657463e5f)
+//extension Notification.Name {
+    //static let notifyName = Notification.Name("notifyName")
+//}
+
 // ディスプレイサイズ取得
 let w = UIScreen.main.bounds.size.width
 let h = UIScreen.main.bounds.size.height
@@ -22,9 +27,15 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
 
     @IBOutlet weak var date: UILabel!
     
+    //うまくいかないので以下コメントアウト
+    //サイドメニューボタン(コードによる実装)
+    //var sideMenuButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: Selector(("clickSearchButton")))
     
-   
-        // デリゲートの設定(デリゲートとは->参考:https://qiita.com/st43/items/9f9990d76cefa1909ef4)
+    //サイドメニューボタンクリック時のイベント処理
+    //func clickSearchbutton() {
+        //let menu = SideMenuManager.default.menuLeftNavigationController!
+        //present(menu, animated: true, completion: nil)
+    //}
         
         //スケジュール内容
         let labelDate = UILabel(frame: CGRect(x: 5, y: 740, width: 400, height: 50))
@@ -85,13 +96,19 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         
         }
     
+    @IBAction func openSlideView(_ sender: Any) {
+        self.slideMenuController()?.openLeft()
+    }
     
     override func viewDidLoad() {
            super.viewDidLoad()
         
         title = "Schedule"
         
+        //サイドメニューライブラリ
         
+        //サイドメニューからの通知を受け取る(一旦コメントアウト)
+        //NotificationCenter.default.addObserver(self, selector: #selector(catchSelectMenuNotification(notification:)), name: Notification.Name("SelectMenuNotification"), object: nil)
         
         self.calendar.dataSource = self
         self.calendar.delegate = self

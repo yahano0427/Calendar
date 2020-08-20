@@ -410,6 +410,7 @@ PODS:
   - SDWebImage (5.8.4):
     - SDWebImage/Core (= 5.8.4)
   - SDWebImage/Core (5.8.4)
+  - SlideMenuControllerSwift (4.0.0)
 
 DEPENDENCIES:
   - CalculateCalendarLogic
@@ -420,6 +421,7 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - FirebaseUI
   - FSCalendar
+  - SlideMenuControllerSwift
 
 SPEC REPOS:
   trunk:
@@ -453,6 +455,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SDWebImage
+    - SlideMenuControllerSwift
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -485,7 +488,8 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
 
-PODFILE CHECKSUM: 50ae883edde4521b7b6dfa7a096142d7ebe99485
+PODFILE CHECKSUM: 8e75804a7b588bcb68c0408f5abb0c8a11090fdd
 
 COCOAPODS: 1.9.3
