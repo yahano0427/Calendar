@@ -9,93 +9,40 @@
 import UIKit
 import FSCalendar
 import CalculateCalendarLogic
+import Firebase
 
 //NotificationCenterを使うための設定(cf: https://qiita.com/ryo-ta/items/2b142361996657463e5f)
 //extension Notification.Name {
     //static let notifyName = Notification.Name("notifyName")
 //}
 
-// ディスプレイサイズ取得
-let w = UIScreen.main.bounds.size.width
-let h = UIScreen.main.bounds.size.height
-
-
 class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
     
+    //ログインユーザー
+    let currentUser = Auth.auth().currentUser
     
+    //カレンダー
     @IBOutlet weak var calendar: FSCalendar!
-
-    @IBOutlet weak var date: UILabel!
     
-    //うまくいかないので以下コメントアウト
-    //サイドメニューボタン(コードによる実装)
-    //var sideMenuButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: Selector(("clickSearchButton")))
-    
-    //サイドメニューボタンクリック時のイベント処理
-    //func clickSearchbutton() {
-        //let menu = SideMenuManager.default.menuLeftNavigationController!
-        //present(menu, animated: true, completion: nil)
-    //}
-        
-        //スケジュール内容
-        let labelDate = UILabel(frame: CGRect(x: 5, y: 740, width: 400, height: 50))
-        //「主なスケジュール」の表示
-        let labelTitle = UILabel(frame: CGRect(x: 0, y: 720, width: 180, height: 20))
-        //カレンダー部分
-        let dateView = FSCalendar(frame: CGRect(x: 0, y: 30, width: w, height: 400))
-        //日付の表示
-        let Date = UILabel(frame: CGRect(x: 5, y: 650, width: 200, height: 100))
-      
-        func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
-            
-            
-        //日付表示設定
-        Date.text = ""
-        Date.font = UIFont.systemFont(ofSize: 20.0)
-        Date.textColor = .black
-        view.addSubview(Date)
-
-        //「主なスケジュール」表示設定
-        labelTitle.text = ""
-        labelTitle.textAlignment = .center
-        labelTitle.font = UIFont.systemFont(ofSize: 14.0)
-        view.addSubview(labelTitle)
-
-        //スケジュール内容表示設定
-        labelDate.text = ""
-        labelDate.font = UIFont.systemFont(ofSize: 15.0)
-        view.addSubview(labelDate)
-        
-        //カレンダー処理(スケジュール表示処理)
-        
-
-            labelTitle.text = "主なスケジュール"
-            labelTitle.backgroundColor = .orange
-            view.addSubview(labelTitle)
-
-            //予定がある場合、スケジュールをDBから取得・表示する。
-            //無い場合、「スケジュールはありません」と表示。
-            labelDate.text = "スケジュールはありません"
-            labelDate.textColor = .lightGray
-            view.addSubview(labelDate)
-
-            let tmpDate = Calendar(identifier: .gregorian)
-            let year = tmpDate.component(.year, from: date)
-            let month = tmpDate.component(.month, from: date)
-            let day = tmpDate.component(.day, from: date)
-            let m = String(format: "%02d", month)
-            let d = String(format: "%02d", day)
-
-            let da = "\(year)/\(m)/\(d)"
-
-            //クリックしたら、日付が表示される。
-            Date.text = "\(m)/\(d)"
-            view.addSubview(Date)
-            
-            
-        
+    //スケジュール
+    var schedules = [Dictionary<String, Any>]() {
+        //Firestoreから非同期でレスポンスが返ってくるため、scheduleが変更されたときにここでreload
+        didSet{
+            calendar.reloadData()
         }
+    }
     
+    //スケジュール日
+    var scheduleDate = [Date]() {
+        didSet{
+            calendar.reloadData()
+        }
+    }
+    
+    //スケジュールメモ
+    var scheduleMemo = [Dictionary<Date, String>]()
+    
+    //左上サイドメニューボタン(左からフリックでも開閉可能)
     @IBAction func openSlideView(_ sender: Any) {
         self.slideMenuController()?.openLeft()
     }
@@ -104,11 +51,6 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
            super.viewDidLoad()
         
         title = "Schedule"
-        
-        //サイドメニューライブラリ
-        
-        //サイドメニューからの通知を受け取る(一旦コメントアウト)
-        //NotificationCenter.default.addObserver(self, selector: #selector(catchSelectMenuNotification(notification:)), name: Notification.Name("SelectMenuNotification"), object: nil)
         
         self.calendar.dataSource = self
         self.calendar.delegate = self
@@ -125,6 +67,33 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         self.calendar.calendarWeekdayView.weekdayLabels[4].text = "木"
         self.calendar.calendarWeekdayView.weekdayLabels[5].text = "金"
         self.calendar.calendarWeekdayView.weekdayLabels[6].text = "土"
+        
+        //スケジュールデータを取得
+        Firestore.firestore().collection("users").document(currentUser!.uid).collection("schedule").getDocuments() {
+            (QuerySnapshot, err) in
+            if let err = err {
+                print("ログインユーザーのスケジュールデータ取得時にエラーが発生しました:\(err)")
+            
+                
+            } else {
+                print("ログインユーザーのスケジュールデータ取得に成功しました")
+                
+                for document in QuerySnapshot!.documents {
+                    //日付をkeyにmemoをvalueにしてshceduleに格納
+                    //Any?型で格納しているためにdateValue()メソッドが使えない、そのためTimestamp型に置き換えてからdateValueでdate型に変更する
+                    let timestamp: Timestamp = document.get("date") as! Timestamp
+                    let memo: String = document.get("memo") as! String
+                    
+                    let date = timestamp.dateValue()
+                    self.scheduleDate.append(date)
+                    self.scheduleMemo.append([date:memo])
+                    
+                    //let data = ["date": date, "memo": memo]
+                    //self.schedules.append(data as [String : Any])
+                    
+                }
+            }
+        }
     }
 
         override func didReceiveMemoryWarning() {
@@ -188,5 +157,36 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         return nil
     }
     
-    
+    //予定が存在するかどうか判断
+    //return 予定の個数
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        if(scheduleDate.contains(date)) {
+            return 1
+        }
+ 
+        return 0
+    }
+   
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        if(scheduleDate.contains(date)) {
+            Firestore.firestore().collection("users").document(currentUser!.uid).collection("schedule").whereField("date", isEqualTo: date).getDocuments() { (QuerySnapshot, err) in
+                if let err = err {
+                    print("削除するスケジュールデータ取得中にエラーが発生しました:\(err)")
+                } else {
+                    for document in QuerySnapshot!.documents {
+                        Firestore.firestore().collection("users").document(self.currentUser!.uid).collection("schedule").document(document.documentID).delete()
+                    }
+                    
+                    self.scheduleDate = self.scheduleDate.filter() {$0 != date}
+                   print("スケジュール削除に成功しました")
+                }
+            }
+        } else {
+            //Scheduleコレクションにデータ投入
+            Firestore.firestore().collection("users").document(self.currentUser!.uid).collection("schedule").document().setData(["memo": "test", "date": date])
+            
+            self.scheduleDate.append(date)
+            print("スケジュール作成に成功しました")
+        }
+    }
 }
