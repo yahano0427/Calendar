@@ -26,9 +26,13 @@ class AuthViewController: UIViewController, FUIAuthDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //authUIのデリゲート
         self.authUI.delegate = self
         self.authUI.providers = providers
+        
+        //ログイン時にviewを描画していると怒られるので追加
+        //definesPresentationContext = true
     }
     
     //ボタンをタップするとFirebaseUIを使ってサインイン
@@ -58,7 +62,16 @@ class AuthViewController: UIViewController, FUIAuthDelegate {
 
         //認証に成功するとnilが返るため、ここで次のページ遷移処理
         if error == nil {
-            self.performSegue(withIdentifier: "loginSegue", sender: self)
+            /*
+            var frontViewController = self
+            while((frontViewController.presentedViewController) != nil) {
+                frontViewController = frontViewController.presentedViewController as! AuthViewController
+            }
+ */
+            //frontViewController.performSegue(withIdentifier: "MainUISegue", sender: self)
+            let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "MainUI") as! SlideViewController
+            nextVC.modalPresentationStyle = .fullScreen
+            self.present(nextVC, animated: true, completion: nil)
         }
     }
 /*

@@ -7,8 +7,31 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
 
-class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LeftViewController: UIViewController {
+    
+    var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()! }}
+    
+    @IBAction func logout(_ sender: Any) {
+        do {
+            //そのまま記述すると'Call can throw, but it is not marked with 'try' and the error is not handled'と怒られるのでエラーハンドリング
+            try authUI.signOut()
+        } catch {
+            print(error)
+        }
+
+        //上のauthUI.signOut()でログアウトが完了しているためnilが返る
+        Auth.auth().addStateDidChangeListener{(auth, user) in
+            print("ログアウトが完了しました(現在のログインユーザー:\(user?.email))")
+        }
+        
+        let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "authId") as! AuthViewController
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    /*
     //サイドメニュー
     let MENU = ["プロフィール", "ログアウト"]
 
@@ -31,6 +54,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Do any additional setup after loading the view.
     }
+ */
     
 
     /*

@@ -24,14 +24,6 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     //カレンダー
     @IBOutlet weak var calendar: FSCalendar!
     
-    //スケジュール
-    var schedules = [Dictionary<String, Any>]() {
-        //Firestoreから非同期でレスポンスが返ってくるため、scheduleが変更されたときにここでreload
-        didSet{
-            calendar.reloadData()
-        }
-    }
-    
     //スケジュール日
     var scheduleDate = [Date]() {
         didSet{
@@ -49,6 +41,9 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     
     override func viewDidLoad() {
            super.viewDidLoad()
+        print(currentUser)
+        
+        //definesPresentationContext = true
         
         title = "Schedule"
         
@@ -87,10 +82,6 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
                     let date = timestamp.dateValue()
                     self.scheduleDate.append(date)
                     self.scheduleMemo.append([date:memo])
-                    
-                    //let data = ["date": date, "memo": memo]
-                    //self.schedules.append(data as [String : Any])
-                    
                 }
             }
         }

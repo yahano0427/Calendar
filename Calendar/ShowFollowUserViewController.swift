@@ -37,7 +37,9 @@ class ShowFollowUserViewController: UIViewController, UITableViewDelegate, UITab
                 print("ログインユーザーのフォローデータ取得時にエラーが発生しました:\(err)")
             } else {
                 for document in QuerySnapshot!.documents {
-                    self.searchedUsers.append(document.data())
+                    var data = document.data()
+                    data.updateValue(document.documentID, forKey: "uid")
+                    self.searchedUsers.append(data)
                     print("ログインユーザーのフォローデータ取得に成功しました:\(document.data())")
                 }
             }
@@ -62,10 +64,14 @@ class ShowFollowUserViewController: UIViewController, UITableViewDelegate, UITab
     //セルを押下した際に起きるイベント処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //prepareにユーザーデータを引き継ぐためにselectedUserに格納
-        selectedUser = self.searchedUsers[indexPath.row]
+        let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "testid") as! FollowUserCalendarViewController
+        //selectedUser = self.searchedUsers[indexPath.row]
         
+        nextVC.selectedUser = self.searchedUsers[indexPath.row]
+        
+        self.navigationController?.pushViewController(nextVC, animated: true)
         //ボタンを押すとユーザー画面に遷移
-        self.performSegue(withIdentifier: "followUserScheduleSegue" , sender: self)
+        //self.performSegue(withIdentifier: "followUserScheduleSegue" , sender: self)
     }
     
     //UserViewControllerのsearchedUserに値をセット
