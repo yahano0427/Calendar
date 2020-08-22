@@ -11,7 +11,7 @@ import FSCalendar
 import CalculateCalendarLogic
 import Firebase
 
-class FollowUserCalendarViewController: UIViewController {
+class FollowUserCalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance {
    //ログインユーザー
    let currentUser = Auth.auth().currentUser
 
@@ -27,7 +27,7 @@ class FollowUserCalendarViewController: UIViewController {
                calendar.reloadData()
            }
        }
-       
+   
        //スケジュールメモ
        var scheduleMemo = [Dictionary<Date, String>]()
        
@@ -36,6 +36,9 @@ class FollowUserCalendarViewController: UIViewController {
            
            title = "Follow"
            
+            
+            self.calendar.dataSource = self
+            self.calendar.delegate = self
            self.calendar.placeholderType = .none
            
            //        年月を日本語表示
@@ -105,15 +108,6 @@ class FollowUserCalendarViewController: UIViewController {
 
            return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
        }
-    
-       // date型 -> 年月日をIntで取得
-       func getDay(_ date:Date) -> (Int,Int,Int){
-           let tmpCalendar = Calendar(identifier: .gregorian)
-           let year = tmpCalendar.component(.year, from: date)
-           let month = tmpCalendar.component(.month, from: date)
-           let day = tmpCalendar.component(.day, from: date)
-           return (year,month,day)
-       }
 
        //曜日判定(日曜日:1 〜 土曜日:7)
        func getWeekIdx(_ date: Date) -> Int{
@@ -121,42 +115,36 @@ class FollowUserCalendarViewController: UIViewController {
            return tmpCalendar.component(.weekday, from: date)
        }
 
-       // 土日や祝日の日の文字色を変える
-       func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-           //祝日判定をする（祝日は赤色で表示する）
-           if self.judgeHoliday(date){
-               return UIColor.red
-           }
-
-           //土日の判定を行う（土曜日は青色、日曜日は赤色で表示する）
-           let weekday = self.getWeekIdx(date)
-           if weekday == 1 {   //日曜日
-               return UIColor.red
-           }
-           else if weekday == 7 {  //土曜日
-               return UIColor.blue
-           }
-
-           return nil
+   // 土日や祝日の日の文字色を変える
+   func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+       //祝日判定をする（祝日は赤色で表示する）
+       if self.judgeHoliday(date){
+           return UIColor.red
        }
-       
-       //予定が存在するかどうか判断
-       //return 予定の個数
-       func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-           if(scheduleDate.contains(date)) {
-               return 1
-           }
+
+       //土日の判定を行う（土曜日は青色、日曜日は赤色で表示する）
+       let weekday = self.getWeekIdx(date)
+       if weekday == 1 {   //日曜日
+           return UIColor.red
+       }
+       else if weekday == 7 {  //土曜日
+           return UIColor.blue
+       }
+
+       return nil
+   }
+
+   //予定が存在するかどうか判断
+   //return 予定の個数
+   func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+       if(scheduleDate.contains(date)) {
+           return 1
+       }
+
+       return 0
+   }
     
-           return 0
-       }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        print("test")
     }
-    */
-
 }

@@ -15,11 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFY-2z-7U0">
-                                <rect key="frame" x="320" y="832" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yrd-sH-rHr" customClass="FSCalendar">
                                 <rect key="frame" x="20" y="88" width="374" height="656"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -195,7 +190,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="followUserTable" destination="qRA-1H-sQ2" id="gep-mB-N4K"/>
-                        <segue destination="SMU-S3-e6O" kind="push" identifier="followUserScheduleSegue" id="C2K-VF-Cjo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RjT-QH-bWW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -205,32 +199,32 @@
         <!--Friends Schedule-->
         <scene sceneID="qRp-yD-Syv">
             <objects>
-                <viewController storyboardIdentifier="testid" id="SMU-S3-e6O" customClass="FollowUserCalendarViewController" customModule="Calendar" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ewo-b6-fgw">
+                <viewController storyboardIdentifier="FollowUserId" id="SMU-S3-e6O" customClass="FollowUserCalendarViewController" customModule="Calendar" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hpt-5k-jwy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nzl-Xp-ioB" customClass="FSCalendar">
-                                <rect key="frame" x="20" y="87" width="374" height="691"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uy5-Sx-9Ss" customClass="FSCalendar">
+                                <rect key="frame" x="20" y="88" width="374" height="631"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="ewo-b6-fgw" id="UBl-d9-VGW"/>
-                                    <outlet property="delegate" destination="ewo-b6-fgw" id="sNa-QR-J6m"/>
+                                    <outlet property="dataSource" destination="Hpt-5k-jwy" id="4It-TI-Y3V"/>
+                                    <outlet property="delegate" destination="Hpt-5k-jwy" id="pzi-Du-s9j"/>
                                 </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="DAy-On-LgJ"/>
+                        <viewLayoutGuide key="safeArea" id="o2r-29-BMf"/>
                     </view>
                     <navigationItem key="navigationItem" title="Friends Schedule" id="44A-6z-d28"/>
                     <connections>
-                        <outlet property="calendar" destination="Nzl-Xp-ioB" id="7mE-w2-aVq"/>
+                        <outlet property="calendar" destination="uy5-Sx-9Ss" id="eTe-3k-wHK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ix-7v-TsO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8730" y="-449"/>
+            <point key="canvasLocation" x="8728.9855072463779" y="-449.33035714285711"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="QPr-xd-A57">
@@ -604,8 +598,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Rsq-dT-F87"/>
-        <segue reference="6sk-sH-9R4"/>
-        <segue reference="C2K-VF-Cjo"/>
+        <segue reference="7cg-Yw-YkY"/>
         <segue reference="yY9-cI-GJJ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -64,7 +64,7 @@ class ShowFollowUserViewController: UIViewController, UITableViewDelegate, UITab
     //セルを押下した際に起きるイベント処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //prepareにユーザーデータを引き継ぐためにselectedUserに格納
-        let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "testid") as! FollowUserCalendarViewController
+        let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "FollowUserId") as! FollowUserCalendarViewController
         //selectedUser = self.searchedUsers[indexPath.row]
         
         nextVC.selectedUser = self.searchedUsers[indexPath.row]
