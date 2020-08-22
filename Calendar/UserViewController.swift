@@ -24,12 +24,6 @@ class UserViewController: UIViewController {
     @IBOutlet weak var userNameField: UILabel!
     @IBOutlet weak var followButton: UIButton!
     
-    //検索に戻るボタン
-    @IBAction func returnSearchButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "returnSearchSegue", sender: self)
-    }
-    
-    @IBOutlet weak var ddd: UILabel!
     //フォローボタン
     //ログインユーザーのfollowコレクションに検索しているユーザーのuidを保存
     @IBAction func follow(_ sender: Any) {
@@ -87,14 +81,15 @@ class UserViewController: UIViewController {
         userNameField.text = searchedUser["name"] as! String
         
         //ログインユーザーが検索ユーザーをフォローしているかを確認
-        Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").whereField("uid", isEqualTo: searchedUser["uid"]).getDocuments() {
-            (QuerySnapshot, err) in
-            if QuerySnapshot!.isEmpty {
-                self.following = false
-                self.followButton.setTitle("フォローする", for: .normal)
-            } else {
+        Firestore.firestore().collection("users").document(currentUser!.uid).collection("follow").document(searchedUser["uid"] as! String).getDocument{(document, error) in
+            if let document = document, document.exists {
+                print("検索したユーザーはフォロー中です:\(document.data())")
                 self.following = true
                 self.followButton.setTitle("フォロー中", for: .normal)
+            } else {
+                print("検索したユーザーはフォローしていません")
+                self.following = false
+                self.followButton.setTitle("フォローする", for: .normal)
             }
         }
     }

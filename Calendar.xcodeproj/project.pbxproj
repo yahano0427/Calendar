@@ -150,8 +150,8 @@
 		2D49A57024DAF26200BCA894 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				9F7AD94624EE3D0B009DD785 /* FollowUserCalendarViewController.swift */,
 				2D49A57124DAF26200BCA894 /* AppDelegate.swift */,
+				9F7AD94624EE3D0B009DD785 /* FollowUserCalendarViewController.swift */,
 				2D49A57324DAF26200BCA894 /* SceneDelegate.swift */,
 				2D49A57524DAF26200BCA894 /* ViewController.swift */,
 				9F1B02C424DBEC0E0084A2B2 /* SettingViewController.swift */,

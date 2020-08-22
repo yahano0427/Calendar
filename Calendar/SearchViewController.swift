@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 
 class SearchViewController: UIViewController {
+    //ログインユーザー
+    var currentUser = Auth.auth().currentUser
+    
     //検索したユーザーデータ
     var searchedUser = [String: Any]()
     
@@ -30,6 +33,12 @@ class SearchViewController: UIViewController {
                     self.performSegue(withIdentifier: "nouser", sender: self)
                 }
                 for document in QuerySnapshot!.documents {
+                    if(document.documentID == self.currentUser!.uid) {
+                        print("ログインユーザーが検索されました")
+                        //returnで明示的に返り値を指定しないとnouser画面に遷移したあとユーザー画面に遷移してしまう
+                        return self.performSegue(withIdentifier: "nouser", sender: self)
+                    }
+                    
                     //検索したユーザーデータをsearchedUserに入れる
                     self.searchedUser = document.data()
                     self.searchedUser.updateValue(document.documentID, forKey: "uid")

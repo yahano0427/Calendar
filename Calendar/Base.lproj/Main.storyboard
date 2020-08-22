@@ -346,36 +346,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNw-df-J7L">
-                                <rect key="frame" x="137" y="283" width="93" height="75"/>
+                                <rect key="frame" x="164" y="348" width="93" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="フォロー"/>
                                 <connections>
                                     <action selector="follow:" destination="taW-kZ-8DI" eventType="touchUpInside" id="JOD-mh-33Q"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5w-1U-4FX">
-                                <rect key="frame" x="116" y="354" width="153" height="99"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="カレンダーを確認する"/>
-                                <connections>
-                                    <action selector="toScheduleSegue:" destination="taW-kZ-8DI" eventType="touchUpInside" id="hEM-n4-iSg"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdW-q3-sZW">
-                                <rect key="frame" x="116" y="179" width="141" height="63"/>
+                                <rect key="frame" x="140" y="216" width="141" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urS-ky-9Li">
-                                <rect key="frame" x="122" y="490" width="182" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="検索に戻る"/>
-                                <connections>
-                                    <action selector="returnSearchButton:" destination="taW-kZ-8DI" eventType="touchUpInside" id="msW-H8-rfI"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Nye-oL-eXW"/>
@@ -597,7 +580,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Rsq-dT-F87"/>
+        <segue reference="uYu-Ei-hBL"/>
         <segue reference="7cg-Yw-YkY"/>
         <segue reference="yY9-cI-GJJ"/>
     </inferredMetricsTieBreakers>

@@ -71,7 +71,9 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
             
                 
             } else {
+                print("ログインユーザー:\(self.currentUser!.email)")
                 print("ログインユーザーのスケジュールデータ取得に成功しました")
+                
                 
                 for document in QuerySnapshot!.documents {
                     //日付をkeyにmemoをvalueにしてshceduleに格納
