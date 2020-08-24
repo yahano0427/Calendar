@@ -10,8 +10,12 @@ import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 import Firebase
+import GoogleMobileAds
 
 class FollowUserCalendarViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance {
+    //バナー広告インスタンス
+    var bannerView: GADBannerView!
+    
    //ログインユーザー
    let currentUser = Auth.auth().currentUser
 
@@ -75,11 +79,39 @@ class FollowUserCalendarViewController: UIViewController,FSCalendarDelegate,FSCa
                        
                        //let data = ["date": date, "memo": memo]
                        //self.schedules.append(data as [String : Any])
-                       
-                   }
-               }
-           }
-       }
+                }
+            }
+        }
+        
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+              
+        addBannerViewToView(bannerView)
+    }
+    
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+      bannerView.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(bannerView)
+      view.addConstraints(
+        [NSLayoutConstraint(item: bannerView,
+                            attribute: .bottom,
+                            relatedBy: .equal,
+                            toItem: bottomLayoutGuide,
+                            attribute: .top,
+                            multiplier: 1,
+                            constant: 0),
+         NSLayoutConstraint(item: bannerView,
+                            attribute: .centerX,
+                            relatedBy: .equal,
+                            toItem: view,
+                            attribute: .centerX,
+                            multiplier: 1,
+                            constant: 0)
+        ])
+     }
 
        override func didReceiveMemoryWarning() {
        super.didReceiveMemoryWarning()
@@ -143,8 +175,4 @@ class FollowUserCalendarViewController: UIViewController,FSCalendarDelegate,FSCa
 
        return 0
    }
-    
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print("test")
-    }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SlideMenuControllerSwift
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Firebase接続設定
         //クラウド上のデータベースのリンク:https://console.firebase.google.com/project/calendar-project-9bf20/database/firestore/data~2Fusers~2FuyQSGR7Yfq1EeHuqs7t9
         FirebaseApp.configure()
+        
+        //Google AdMob初期設定
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         //SlideMenuControllerSwiftの初期設定
         let slideMenuController = SlideMenuController(mainViewController: ViewController(), leftMenuViewController: LeftViewController())

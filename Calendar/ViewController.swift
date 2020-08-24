@@ -10,13 +10,17 @@ import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 import Firebase
+import GoogleMobileAds
 
 //NotificationCenterを使うための設定(cf: https://qiita.com/ryo-ta/items/2b142361996657463e5f)
 //extension Notification.Name {
     //static let notifyName = Notification.Name("notifyName")
 //}
 
-class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
+class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance, GADBannerViewDelegate{
+    
+    //バナー広告インスタンス
+    var bannerView: GADBannerView!
     
     //ログインユーザー
     let currentUser = Auth.auth().currentUser
@@ -43,13 +47,15 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
            super.viewDidLoad()
         print(currentUser)
         
-        //definesPresentationContext = true
-        
         title = "Schedule"
         
+        //カレンダーのデリゲート設定
         self.calendar.dataSource = self
         self.calendar.delegate = self
         self.calendar.placeholderType = .none
+        
+        //バナー広告のデリゲート設定
+        //bannerView.delegate = self
         
         //        年月を日本語表示
          self.calendar.appearance.headerDateFormat = "YYYY年MM月"
@@ -87,6 +93,12 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
                 }
             }
         }
+        
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        addBannerViewToView(bannerView)
     }
 
         override func didReceiveMemoryWarning() {
@@ -100,7 +112,28 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         formatter.dateFormat = "YYYY-MM-DD"
         return formatter
     }()
-
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+      bannerView.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(bannerView)
+      view.addConstraints(
+        [NSLayoutConstraint(item: bannerView,
+                            attribute: .bottom,
+                            relatedBy: .equal,
+                            toItem: bottomLayoutGuide,
+                            attribute: .top,
+                            multiplier: 1,
+                            constant: 0),
+         NSLayoutConstraint(item: bannerView,
+                            attribute: .centerX,
+                            relatedBy: .equal,
+                            toItem: view,
+                            attribute: .centerX,
+                            multiplier: 1,
+                            constant: 0)
+        ])
+     }
+    
     // 祝日判定を行い結果を返すメソッド(True:祝日)
     func judgeHoliday(_ date : Date) -> Bool {
         //祝日判定用のカレンダークラスのインスタンス
